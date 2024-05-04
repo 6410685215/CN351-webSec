@@ -1,0 +1,89 @@
+html {
+  font-family: sans-serif;
+}
+
+body.grid-container {
+  display: grid;
+  width: 100vw;
+  grid-template-columns: 1fr 50% 1fr;
+  grid-template-rows: 80px 1fr 60px;
+  gap: 0px 0px;
+  grid-template-areas:
+    "header header header"
+    "nav main aside"
+    "footer footer footer";
+}
+
+header {
+  grid-area: header;
+}
+main {
+  grid-area: main;
+}
+footer {
+  grid-area: footer;
+}
+
+/* login page */
+.login.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login.card {
+  width: 400px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #ccc;
+}
+
+.login>.card-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.login>.card-body {
+  margin-bottom: 20px;
+}
+.login>.card-body .form-group {
+  display: block;
+  margin-bottom: 20px;
+}
+.login>.card-body form {
+  text-align: center;
+}
+
+/* index page */
+.index>.card-search {
+  margin-bottom: 20px;
+}
+
+/* root */
+label, input {
+  display: block;;
+  text-align: left;
+}
+input[type="text"], input[type="password"] {
+  padding: 5px 10px;
+}
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #333;
+  padding: 10px;
+}
+

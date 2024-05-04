@@ -1,0 +1,45 @@
+{% extends "layout/base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock css %}
+
+{% block content %}
+<div class="container card index">
+    <div class="card-header">
+        <h3>User Sample</h3>
+    </div>
+    <div class="card-search">
+        <form action="{% url 'index' %}" method="GET" 
+            style="display: flex; gap: 10px;">
+            <input type="text" name="search" placeholder="Search">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div class="card-body">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 60px;">User ID</th>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td style="text-align: center;">{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.first_name }} {{ user.last_name }}</td>
+                    <td>{{ user.gender }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
