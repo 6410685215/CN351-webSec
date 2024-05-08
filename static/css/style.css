@@ -1,21 +1,32 @@
 html {
   font-family: sans-serif;
 }
+.log .card-body {
+  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+}
 
 body.grid-container {
   display: grid;
   width: 100vw;
-  grid-template-columns: 1fr 50% 1fr;
+  grid-template-columns: 1fr 70% 1fr;
   grid-template-rows: 80px 1fr 60px;
   gap: 0px 0px;
   grid-template-areas:
     "header header header"
     "nav main aside"
     "footer footer footer";
+  margin: 0;
 }
 
 header {
   grid-area: header;
+  display: grid;
+
+  background-color: #000;
+
+  position: fixed;
+  width: 100%;
+  height: 80px;
 }
 main {
   grid-area: main;
@@ -30,20 +41,26 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-inline: auto;
 }
 
 .login.card {
   width: 400px;
-  padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: #ccc;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid;
+  background-color: #f5f5f5;
 }
 
 .login>.card-header {
   font-size: 24px;
   font-weight: bold;
+  color: #fff;
   margin-bottom: 20px;
+  text-align: center;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  background-color: #000;
 }
 .login>.card-body {
   margin-bottom: 20px;
@@ -58,7 +75,29 @@ footer {
 
 /* index page */
 .index>.card-search {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
   margin-bottom: 20px;
+}
+.index>.card-search label {
+  align-self: center;
+}
+
+/* logging page */
+.log .card-body {
+  padding: 5px;
+  border: 1px solid;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2) inset;
+}
+.log>.card-search {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.log>.card-search label {
+  align-self: center;
 }
 
 /* root */
@@ -66,16 +105,66 @@ label, input {
   display: block;;
   text-align: left;
 }
-input[type="text"], input[type="password"] {
+select {
+  border-radius: 8px;
+  border: 1px solid;
   padding: 5px 10px;
 }
-button[type="submit"] {
+input[type="text"], input[type="password"] {
+  border-radius: 6px;
+  border: 1px solid;
+  padding: 5px 10px;
+}
+button {
   padding: 10px 20px;
   background-color: #333;
   color: #fff;
-  border: none;
+  border: 1px solid;
   border-radius: 5px;
   cursor: pointer;
+}
+button>a {
+  color: #000;
+  text-decoration: none;
+}
+button:hover, .btn button:hover {
+  background-color: #fd4;
+  color: #333;
+  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.5) inset; */
+}
+.btn button {
+  background-color: #fff;
+  color: #000;
+}
+
+header .btn {
+  grid-column: 3;
+  margin-inline: 30px;
+  align-content: center;
+  justify-self: end;
+}
+header .site {
+  grid-column: 1;
+  margin-inline: 30px;
+  align-content: center;
+}
+.site a {
+  text-decoration: none;
+  color: #fff;
+}
+
+nav {
+  display: flex;
+  color: #fff;
+  gap: 5px;
+  align-items: center;
+}
+nav a {
+  color: #bbb;
+  text-decoration: none;
+}
+nav a:hover {
+  color: #fff;
 }
 
 table {

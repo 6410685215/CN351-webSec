@@ -1,0 +1,22 @@
+{% extends "layout/base.html" %}
+
+{% block header %}
+    <header>
+        <div class="site">
+            <a href="{% url 'index' %}"><h1>CN351-webSec</h1></a>
+        </div>
+        <nav>
+            <a href="{% url 'index' %}" 
+                {% block navIndex %}{% endblock navIndex %}>
+                <h3>Data-Sample</h3>
+            </a> |
+            <a href="{% url 'logging' %}"
+                {% block navLog %}{% endblock navLog %}>
+                <h3>Activity-log</h3>
+            </a>
+        </nav>
+        <div class="btn">
+            <a href="{% url 'logout' %}"><button>Logout</button></a>
+        </div>
+    </header>
+{% endblock header %}
