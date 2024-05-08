@@ -40,9 +40,16 @@ def _logout(request):
 # start logging page
 import os
 def logging(request):
-    command = "tail -n 5 django.log"
+    command = "cat django.log"
+    if request.GET.get('search') :
+        command += f" | grep {request.GET.get('search')}"
     result = os.popen(command).read()
     result = result.split("\n")
+    if request.GET.get('row') :
+        row = int(request.GET.get('row'))
+    else:
+        row = 5
+    result = result[-row-1:-1]
     data = {
         'console': result
     }

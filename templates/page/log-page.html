@@ -9,6 +9,18 @@
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock css %}
+{% block js %}
+<script>
+    var row = document.getElementById('row');
+    row.addEventListener('change', rowChange);
+
+    function rowChange() {
+        var inputRow = document.getElementById('input-row');
+        inputRow.value = row.value
+    };
+
+</script>
+{% endblock js %}
 
 {% block content %}
 <div class="container card log">
@@ -19,10 +31,11 @@
         <form
             style="display: flex; gap: 10px;">
             <input type="text" name="search" placeholder="Search">
-            <button type="button" onclick="submitForm()">Search</button>
+            <input type="hidden" name="row" value="5" id="input-row">
+            <button type="submit">Search</button>
         </form>
-        <label for="limit">Number of rows:</label>
-        <select name="limit" id="limit">
+        <label for="row">Number of rows:</label>
+        <select name="row" id="row">
             <option value="5">5</option>
             <option value="10">10</option>
             <option value="20">20</option>
