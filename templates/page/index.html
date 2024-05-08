@@ -1,23 +1,106 @@
-{% extends "layout/base.html" %}
+{% extends "layout/header.html" %}
 {% load static %}
 
 {% block title %}Home{% endblock title %}
+{% block navIndex %}
+    style="color: #fb4;"
+{% endblock navIndex %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock css %}
+{% block js %}
+<script>
+    var form = document.querySelector('.card-search form');
+
+    function submitForm() {
+        var formData = new FormData(form);
+        var url = form.getAttribute('action');
+        var cardBody = document.querySelector('.card-body');
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url + '?' + new URLSearchParams(formData).toString(), true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var res = document.createElement('div');
+                res.innerHTML = xhr.responseText;
+                cardBody.innerHTML = res.querySelector('.card-body').innerHTML;
+            }
+        };
+        xhr.send();
+    };
+
+    var limit = document.getElementById('limit');
+    limit.addEventListener('change', limitChange);
+
+    function limitChange() {
+        var inputLimit = document.getElementById('input-limit');
+        inputLimit.value = limit.value;
+        if(!inputLimit.value) {
+            document.getElementById('fpage').style.display = "none";
+            document.getElementById('ppage').style.display = "none";
+            document.getElementById('npage').style.display = "none";
+            return firstPage();
+        } else {
+            document.getElementById('fpage').style.display = "block";
+            document.getElementById('ppage').style.display = "block";
+            document.getElementById('npage').style.display = "block";
+        }
+        submitForm();
+    };
+
+    function firstPage() {
+        var page = document.getElementById('page');
+        page.innerHTML = 'page: 1';
+
+        var inputPage = document.getElementById('input-page');
+        inputPage.value = 0;
+        submitForm();
+    };
+
+    function prePage() {
+        var page = document.getElementById('page');
+        var inputPage = document.getElementById('input-page');
+        if( inputPage.value > 0) {
+            --inputPage.value;
+            page.innerHTML = 'page: '+(parseInt(inputPage.value)+1);
+            submitForm();
+        };
+    };
+
+    function nexPage() {
+        var page = document.getElementById('page');
+        var inputPage = document.getElementById('input-page');
+            ++inputPage.value;
+            page.innerHTML = 'page: '+(parseInt(inputPage.value)+1);
+            submitForm();
+    }
+</script>
+{% endblock js %}
 
 {% block content %}
 <div class="container card index">
     <div class="card-header">
-        <h3>User Sample</h3>
+        <h2>Data Sample</h2>
     </div>
     <div class="card-search">
         <form action="{% url 'index' %}" method="GET" 
             style="display: flex; gap: 10px;">
             <input type="text" name="search" placeholder="Search">
-            <button type="submit">Search</button>
+            <input type="hidden" name="limit" id="input-limit" value="">
+            <input type="hidden" name="page" id="input-page" value="0">
+            <button type="button" onclick="submitForm()">Search</button>
         </form>
+        <label for="limit">Number of rows:</label>
+        <select name="limit" id="limit">
+            <option value="">All</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select>
+        <label for="page" id="page">page: 1</label>
+        <button type="button" id="fpage" style="display: none;" onclick="firstPage()"><<</button>
+        <button type="button" id="ppage" style="display: none;" onclick="prePage()"><</button>
+        <button type="button" id="npage" style="display: none;" onclick="nexPage()">></button>
     </div>
     <div class="card-body">
         <table>

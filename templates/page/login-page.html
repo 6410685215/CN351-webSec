@@ -8,10 +8,13 @@
 {% endblock css %}
 
 {% block content %}
+
 <div class="container card login">
     <div class="card-header">
         <h3>Login</h3>
+        
     </div>
+    <p style="margin: 0 0 20px 0; height: 1em; color: crimson;">{{message}}</p>
     <div class="card-body">
         <form action="/login/" method="POST">
             {% csrf_token %}
@@ -23,7 +26,7 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" class="btn">Login</button>
         </form>
     </div>
 </div>    
