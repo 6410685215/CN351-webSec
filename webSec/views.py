@@ -17,18 +17,43 @@ def index(request):
 
 def get_queryset(request):
     search = request.GET.get('search') or ''
-    sql = f"SELECT user_id, username, first_name, last_name, gender FROM user_details WHERE username LIKE '%{ search }%' OR first_name LIKE '%{ search }%' OR last_name LIKE '%{ search }%' "
+    _limit = request.GET.get('limit') or ''
+    page = request.GET.get('page')
+    if _limit :
+        page = int(page)*int(_limit)
+        limit = f"LIMIT {page}, {_limit}"
+    else: limit = ''
+    
+    sql = f"SELECT user_id, username, first_name, last_name, gender FROM user_details WHERE username LIKE '%{ search }%' OR first_name LIKE '%{ search }%' OR last_name LIKE '%{ search }%' { limit };"
     print(sql)
     query = connection.cursor()
     query.execute(sql)
     return query.fetchall()
-    
-
 # end index page
+
+# start header
+def _logout(request):
+    logout(request)
+    return redirect('/')
+# end header
+
+# start logging page
+import os
+def logging(request):
+    command = "tail -n 5 django.log"
+    result = os.popen(command).read()
+    result = result.split("\n")
+    data = {
+        'console': result
+    }
+    print(result)
+    return render(request, 'page/log-page.html', data)
+# end logging page
 
 # start login page
 @csrf_exempt
-def login_page(request):
+def _login(request):
+    message = ''
     if request.user.is_authenticated:
         print('User is already authenticated')
         return redirect('/')
@@ -41,7 +66,8 @@ def login_page(request):
             login(request, user)
             return redirect('/')
         else:
+            message = 'Invalid login'
             print('Invalid login')
     print('Render login page')
-    return render(request, 'page/login-page.html')
+    return render(request, 'page/login-page.html', {'message':message})
 # end login page

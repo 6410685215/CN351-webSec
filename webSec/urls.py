@@ -22,7 +22,9 @@ from . import views, createUser
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('login/', views.login_page, name='login'),
+    path('login/', views._login, name='login'),
+    path('logout/', views._logout, name='logout'),
+    path('logging/', views.logging, name='logging'),
     
     # for admin create user
     path('create_user/', createUser.create_user, name='create_user'),
