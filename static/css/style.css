@@ -140,7 +140,7 @@ button:hover, .btn button:hover {
 header .btn {
   grid-column: 3;
   margin-inline: 30px;
-  align-content: center;
+  align-self: center;
   justify-self: end;
 }
 header .site {
