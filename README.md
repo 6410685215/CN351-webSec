@@ -29,7 +29,7 @@ $ pip install -r requirements.txt
     -- uncomment new HOST <br>
 6. add service to `/etc/systemd/system`
 ```bash
-$ cp cn351.service /etc/systemd/system
+$ sudo cp cn351.service /etc/systemd/system
 ```
 7. enable service
 ```bash
