@@ -1,0 +1,13 @@
+[Unit]
+Description=run server CN351-webSec
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/home/kali/CN351-webSec
+ExecStart=/home/kali/CN351-webSec/.venv/bin/python manage.py runserver 0.0.0.0:8351
+ExecReload=/bin/kill -HUP $MAINPID
+Environment=PORT=8351
+
+[Install]
+WantedBy=multi-user.target
