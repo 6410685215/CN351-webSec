@@ -6,7 +6,7 @@ services:
     image: mariadb:10.11
     volumes:
       #- ./db_mariadb:/var/lib/mysql
-      - ./init_mariadb:/docker-entrypoint-initdb.d/
+      - ./init_mariadb:/docker-entrypoint-initdb.d/:ro
     ports:
       - "3306:3306"
     restart: always
