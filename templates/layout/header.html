@@ -6,6 +6,7 @@
             <a href="{% url 'index' %}"><h1>CN351-webSec</h1></a>
         </div>
         <nav>
+            <h3>{{ user.username }}: </h3>
             <a href="{% url 'index' %}" 
                 {% block navIndex %}{% endblock navIndex %}>
                 <h3>Data-Sample</h3>
