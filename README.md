@@ -1,5 +1,9 @@
 # CN351-webSec
 
+## SetUp network in visual machine
+1. Enable network adapter 2 in virtual machine setting
+2. Change network adapter 2 to bridged adapter
+
 ## SetUp project in visual machine
 1. Clone project from github to `/home/kali/`
 2. Install docker and docker-compose
