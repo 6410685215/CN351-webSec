@@ -43,7 +43,7 @@ $ sudo systemctl start cn351
 2. Try to guess username and password in target web application
 3. Check a HTTP history in Burp Suit
 4. Send HTTP Response that have a verify icon to Intruder
-5. Select a username or password to bruce force guessing
+5. Select a username or password to bruceforce guessing
 6. Add payload with seclists (lists of word guessing)
 ```bash
 $ sudo apt install seclists
