@@ -38,6 +38,18 @@ $ sudo systemctl enable cn351
 $ sudo systemctl start cn351
 ```
 
+## Password Guessing
+1. Open Burp Suit in kali-destop
+2. Try to guess username and password in target web application
+3. Check a HTTP history in Burp Suit
+4. Send HTTP Resposonse to Intruder
+5. Select a username or password to bruce force guessing
+6. Add payload with seclists (lists of word guessing)
+```bash
+$ sudo apt install seclists
+```
+7. Observe and select a differ output to use as a password
+
 ## SQL Injection
 1. Go to http://<target-ip/domain>/?search=
 2. Try to search with SQL Injection Example:
