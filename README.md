@@ -38,7 +38,7 @@ $ sudo systemctl enable cn351
 $ sudo systemctl start cn351
 ```
 
-## Password Guessing
+## 4.7 Password Guessing
 1. Open Burp Suit in kali-destop
 2. Try to guess username and password in target web application
 3. Check a HTTP history in Burp Suit
@@ -50,7 +50,7 @@ $ sudo apt install seclists
 ```
 7. Observe and select a differ output to use as a password
 
-## SQL Injection
+## 7.2 SQL Injection
 1. Go to http://<target-ip/domain>/?search=
 2. Try to search with SQL Injection Example:
 ```url
@@ -59,7 +59,7 @@ $ sudo apt install seclists
 ```
 3. Change sessionid to sessionid in django_session table
 
-## Command Injection
+## 7.4 Command Injection
 1. Go to http://<target-ip/domain>/logging/?search=
 2. Try to search with Command Injection Example:
 ```input
@@ -72,7 +72,7 @@ $ sudo apt install seclists
 404 && ufw disable
 ```
 
-## Group Member
+## Group Members
 1. 6410615022   ชัญญานุช จำนงนิตย์
 2. 6410615113   พิชชากานต์ ลีพุด
 3. 6410685215	พชรพล ทัพผักแว่น
